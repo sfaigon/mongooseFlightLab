@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <!-- Write the line of EJS to iterate over movies using forEach -->
-
+    
     <% flights.forEach(f=> { %>
 
   
@@ -20,7 +20,7 @@
         <td><%= f.airline %></td>
         <td><%= f.airport %></td>
         <td><%= f.flightNo %></td>
-        <td><%= departs %></td>
+        <td><%= f.departs %></td>
         <!-- finish the ternary expression to display 'Yes' or 'Nope' -->
       </tr>
     <!-- Close the forEach using EJS here -->
@@ -28,4 +28,4 @@
   </tbody>
 </table>
 
-<%- include('../partials/header') %>
+<%- include('../partials/footer') %>
