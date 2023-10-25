@@ -12,6 +12,11 @@ const index = async (req, res, next) => {
     return next();
   }
 };
+
+async function show(req, res) {
+  const flight = await Flight.findById(req.params.id);
+  res.render("flights/show", {title: "Flight Detail", flight});
+}
 function newFlight(req, res) {
   res.render("flights/new", {
     title: "New Flight",
@@ -36,4 +41,5 @@ async function create(req, res) {
     new: newFlight,
     create,
     index,
+    show,
   }
