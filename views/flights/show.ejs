@@ -1,10 +1,10 @@
 <%- include('../partials/header') %>
 <section id="show-page">
-    <div>Airline: </div>
+    <div><h3>Airline:</h3> </div>
     <div><%= flight.airline %></div>
-    <div>Airport: </div>
+    <div><h3>Airport: </h3></div>
     <div><%= flight.airport %></div>
-    <div>Departure: </div>
+    <div><h3>Departure: </h3></div>
     <div><%= flight.departs %></div>
 
   </section>
@@ -12,13 +12,20 @@
 <h2>Destinations</h2>
 <form action="/flights/<%= flight._id %>/destinations" id="add-destination-form" method="POST">
     <label>Destination: </label>
-    <select name="airport">
+    <select name="destination">
         <option value="AUS">AUS</option>
         <option value="DFW">DFW</option>
         <option value="DEN">DEN</option>
         <option value="LAX">LAX</option>
         <option value="SAN">SAN</option>
     </select>
+    <input
+  type="datetime-local"
+  name="arrivalDate"
+  
+  min="2023-10-24T00:00"
+  max="2025-10-24T00:00" />
+
     <input type="submit" value="Add Destination">
 </form>
 <% if (flight.destinations.length) { %>
@@ -33,8 +40,8 @@
         <% flight.destinations.forEach(function(d) { %>
           <tr>
             <!-- .toLocaleDateString() provides a more friendly date format -->
-            <td><%= d.createdAt.toLocaleDateString() %></td>
-            <td><%= d.airport %></td>
+            <td><%= d.arrivalDate %></td>
+            <td><%= d.destination %></td>
             
           </tr>
         <% }); %>

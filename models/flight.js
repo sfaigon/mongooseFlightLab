@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const destinationSchema = new Schema({
     destination: {type: String, required: true},
+    arrivalDate: {type: Date}
 }, {
     timestamps: true
 })
