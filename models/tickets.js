@@ -13,7 +13,8 @@ const ticketSchema = new Schema({
         required: true,
     },
     flight: {
-        
+        type: ObjectId,
+        ref: "Flight"
     }
 }, {
     timestamps: true
