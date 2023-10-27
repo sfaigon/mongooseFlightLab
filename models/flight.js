@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const ticketSchema = new Schema({
+    ticketNo: {type: Number, required: true},
+})
+
 const destinationSchema = new Schema({
     destination: {type: String, required: true},
     arrivalDate: {type: Date}
@@ -18,7 +22,8 @@ const flightSchema = new Schema({
         yearLater.setFullYear(yearLater.getFullYear() + 1);
         return yearLater;
     }},
-    destinations: [destinationSchema]
+    destinations: [destinationSchema],
+    tickets: [ticketSchema],
   },
       {timeStamps: true}
   );
