@@ -3,7 +3,7 @@ const Flight = require("../models/flight");
 const index = async (req, res, next) => {
   try {
     const myFlights = await Flight.find({});
-    console.log(myFlights);
+   
     res.render("flights/index", {
       flights: myFlights,
     });
