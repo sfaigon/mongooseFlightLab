@@ -14,7 +14,7 @@ const index = async (req, res, next) => {
 };
 
 async function show(req, res) {
-
+  const flight = await Flight. findById(req.params.id);
 
   Flight.findById(req.params.id, function(err, flight) {
     Ticket.find({flight: flight._id}, function(err, tickets) {
