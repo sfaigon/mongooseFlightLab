@@ -1,5 +1,5 @@
 const Flight = require("../models/flight");
-
+const Ticket = require("../models/tickets");
 const index = async (req, res, next) => {
   try {
     const myFlights = await Flight.find({});
@@ -14,20 +14,28 @@ const index = async (req, res, next) => {
 };
 
 async function show(req, res) {
-  const flight = await Flight. findById(req.params.id);
+  try {
+    const flight = await Flight.findById(req.params.id);
+    const tickets = await Ticket.find({flight: flight._id});
+    res.render("flights/show", {flight, tickets});
 
-  Flight.findById(req.params.id, function(err, flight) {
-    Ticket.find({flight: flight._id}, function(err, tickets) {
-      try {
-        res.render('flights/show', { flight, tickets });
+  } catch (err){
+    console.log(err);
+    return res.redirect("/flights", {errorMSG: err.message});
+  }
 
-      } catch (err) {
-        console.log(err)
-        return res.redirect('/flights', { errorMsg: err.message });
-      }
+  // Flight.findById(req.params.id, function(err, flight) {
+  //   Ticket.find({flight: flight._id}, function(err, tickets) {
+  //     try {
+  //       res.render('flights/show', { flight, tickets });
+
+  //     } catch (err) {
+  //       console.log(err)
+  //       return res.redirect('/flights', { errorMsg: err.message });
+  //     }
         
-    });
-});
+  //   });
+// });
  
 }
 function newFlight(req, res) {
