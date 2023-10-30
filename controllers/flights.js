@@ -14,8 +14,21 @@ const index = async (req, res, next) => {
 };
 
 async function show(req, res) {
-  const flight = await Flight.findById(req.params.id);
-  res.render("flights/show", {title: "Flight Detail", flight});
+
+
+  Flight.findById(req.params.id, function(err, flight) {
+    Ticket.find({flight: flight._id}, function(err, tickets) {
+      try {
+        res.render('flights/show', { flight, tickets });
+
+      } catch (err) {
+        console.log(err)
+        return res.redirect('/flights', { errorMsg: err.message });
+      }
+        
+    });
+});
+ 
 }
 function newFlight(req, res) {
   res.render("flights/new", {
